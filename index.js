@@ -11,7 +11,15 @@ app.use(cors({
 app.get(':endpoint([\\/\\w\\.-]*)', (req, res)=>{
     let endpoint = 'https://api.deezer.com' + req.params.endpoint;
 
-    axios.get(endpoint)
+    let params = {}
+
+    for(const [field, value] of Object.entries(req.query)){
+        params[field]=value
+    }
+
+    axios.get(endpoint,{
+        params:params
+    })
     .then(response=>res.json(response.data))
     .catch(error=>res.json(error))
 })
