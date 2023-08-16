@@ -1,7 +1,9 @@
-const express = require('express')
+import axios from "axios"
+import express from "express"
+import cors from "cors"
+
 const app = express()
-const axios = require('axios')
-const cors = require('cors')
+
 let port = process.env.PORT || 3000;
 
 app.use(cors({
